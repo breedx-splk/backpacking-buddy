@@ -14,6 +14,7 @@ class BackpackingBuddyApplication : Application() {
         Log.i("bb", "Initializing the opentelemetry-android-agent")
         val diskBufferingConfig = DiskBufferingConfiguration.builder()
             .setEnabled(true)
+            .setMaxCacheSize(10_000_000)
             .build()
         val config = OtelRumConfig()
             .setDiskBufferingConfiguration(diskBufferingConfig)
