@@ -62,6 +62,8 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation("io.opentelemetry.android:android-agent:0.5.0-alpha-SNAPSHOT")
+    implementation("io.opentelemetry:opentelemetry-sdk:1.35.0")
+    implementation("io.opentelemetry:opentelemetry-exporter-otlp:1.35.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
