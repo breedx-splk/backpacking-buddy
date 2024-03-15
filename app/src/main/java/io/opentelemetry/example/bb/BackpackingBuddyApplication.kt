@@ -7,6 +7,7 @@ import io.opentelemetry.android.OpenTelemetryRumBuilder
 import io.opentelemetry.android.config.OtelRumConfig
 import io.opentelemetry.android.features.diskbuffering.DiskBufferingConfiguration
 import io.opentelemetry.api.trace.Tracer
+import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter
 
 class BackpackingBuddyApplication : Application() {
 
@@ -20,6 +21,11 @@ class BackpackingBuddyApplication : Application() {
         val config = OtelRumConfig()
             .setDiskBufferingConfiguration(diskBufferingConfig)
         val otelRumBuilder: OpenTelemetryRumBuilder = OpenTelemetryRum.builder(this, config)
+            .addSpanExporterCustomizer {
+                OtlpGrpcSpanExporter.builder()
+                    .setEndpoint("https://some.host")
+                    .build()
+            }
         try {
             rum = otelRumBuilder.build()
 
@@ -32,7 +38,7 @@ class BackpackingBuddyApplication : Application() {
     companion object {
         var rum: OpenTelemetryRum? = null
         fun tracer(name: String): Tracer? {
-            return rum?.openTelemetry?.tracerProvider?.get("")
+            return rum?.openTelemetry?.tracerProvider?.get(name)
         }
     }
 }

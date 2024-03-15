@@ -3,6 +3,7 @@ package io.opentelemetry.example.bb
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +18,8 @@ import androidx.compose.ui.unit.dp
 import io.opentelemetry.example.bb.ui.theme.BackpackingBuddyTheme
 
 class MainActivity : ComponentActivity() {
+
+    private val viewModel by viewModels<CoordinatesViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,8 +40,8 @@ class MainActivity : ComponentActivity() {
                         ) {
                             Text("Backpacking Buddy")
                         }
-                        Distance()
-                        Elevation()
+                        Distance(viewModel.distanceState)
+                        Elevation(viewModel.elevationState)
                         Disposition()
                     }
                 }
