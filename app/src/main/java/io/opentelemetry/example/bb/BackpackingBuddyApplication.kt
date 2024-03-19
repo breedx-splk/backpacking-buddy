@@ -35,8 +35,8 @@ class BackpackingBuddyApplication : Application() {
             }
         try {
             rum = otelRumBuilder.build()
-            ServiceManager.get().start();
-            Log.d("bb", "RUM session started: " + rum!!.rumSessionId)
+//            ServiceManager.get().start();
+            Log.d("bb",  "RUM session started: " + rum!!.rumSessionId)
         } catch (e: Exception) {
             Log.e("bb", "Oh no!", e)
         }
